@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#12274A">
+<title>__TITRE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#12274A;--blue:#2F6FD0;--yellow:#F5C230;--ink:#12274A;--red:#D93A26}
+*{box-sizing:border-box}
+body{margin:8px;min-height:calc(100vh - 16px);background:var(--navy);color:#fff;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:20px;border:6px solid var(--blue);border-radius:28px}
+html{overflow-x:hidden}
+@media (max-width:400px){h1{font-size:21px!important;padding:2px 10px!important}header .btn{font-size:15px!important;padding:4px 10px!important}nav button{font-size:15px!important}
+.m .lbl{font-size:0}.m .lbl::after{content:"Éq.";font-size:19px}.m{column-gap:6px!important}.sc input{width:44px!important;font-size:24px!important}.sc{min-width:0!important}}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 12px;gap:8px;max-width:760px;margin:0 auto}
+header .btn{white-space:nowrap;font-size:17px;padding:4px 12px;flex:none}
+h1{margin:0;font-size:26px;font-style:italic;font-weight:800;text-transform:uppercase;background:var(--yellow);color:var(--ink);padding:2px 16px;transform:skewX(-6deg);border-radius:6px}
+button,select,input{font:inherit}
+.btn{background:transparent;color:#fff;border:2px solid var(--blue);border-radius:999px;padding:4px 14px;cursor:pointer}
+.btn.on{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.btn.solid{background:var(--yellow);color:var(--ink);border-color:var(--yellow);font-weight:800;text-transform:uppercase}
+.btn.ink{color:var(--ink);border-color:var(--ink)}
+nav{display:flex;gap:6px;padding:0 12px 12px;max-width:760px;margin:0 auto}
+nav button{flex:1;min-width:0;font-size:17px;padding:8px 4px;border-radius:12px;border:0;background:#1c3a6b;color:#fff;font-weight:800;text-transform:uppercase;cursor:pointer}
+nav button.act{background:#fff;color:var(--ink)}
+main{padding:0 12px 40px;max-width:760px;margin:0 auto}
+.card{background:#fff;color:var(--ink);border-radius:20px;padding:8px 12px;margin-bottom:12px}
+.meta{color:#c9d6ee;margin:0 4px 10px;font-size:18px}
+.meta b{color:#fff}
+table{width:100%;border-collapse:collapse;font-size:18px}
+th{font-size:15px;color:#4a5b7a;text-align:center;padding:6px 1px}
+td{text-align:center;padding:8px 1px;border-top:1px solid #e3e8f2;font-weight:600}
+td.t{text-align:left;font-weight:800;white-space:nowrap}
+td.pts{font-weight:800;font-size:22px}
+tr.q td{background:#FFF6D6}
+.tie{color:var(--red);font-weight:800}
+.legend{display:inline-block;width:12px;height:12px;background:#FFF6D6;border:1px solid var(--yellow);border-radius:3px;margin-right:6px;vertical-align:-1px}
+.slot{display:flex;align-items:center;gap:8px;margin:16px 4px 8px;font-weight:800;text-transform:uppercase;font-size:22px}
+.now{background:var(--yellow);color:var(--ink);border-radius:999px;padding:0 10px;font-size:16px}
+.m{display:grid;grid-template-columns:8px 1fr auto 1fr;align-items:center;column-gap:10px;row-gap:2px;padding:8px 0;border-top:1px solid #e3e8f2}
+.m:first-child{border-top:0}
+.bar{align-self:stretch;border-radius:4px;grid-row:span 2}
+.m .a{text-align:right;font-weight:600;white-space:nowrap}
+.m .b{text-align:left;font-weight:600;white-space:nowrap}
+.m{grid-template-columns:8px minmax(0,1fr) auto minmax(0,1fr)!important}
+.m .w{font-weight:800;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:4px;text-underline-offset:3px}
+.info{grid-column:2/5;text-align:center;font-size:15px;color:#4a5b7a;line-height:1.1}
+.info b{color:var(--red)}
+.sc{display:inline-flex;gap:6px;align-items:center;font-weight:800;font-size:26px;min-width:84px;justify-content:center}
+.sc input{width:52px;height:46px;text-align:center;font-size:26px;font-weight:800;border:2px solid #c3cde3;border-radius:12px;color:var(--ink);background:#FFF6D6}
+select{border-radius:10px;padding:4px;max-width:100%;color:var(--ink)}
+.filter{margin:0 0 10px}
+.filter select{width:100%;padding:8px;font-size:20px}
+.tbox{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:22px;text-transform:uppercase}
+.fin h3{margin:10px 4px 4px;text-transform:uppercase;font-style:italic}
+.champ{background:var(--yellow);color:var(--ink);border-radius:20px;padding:14px;text-align:center;font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;margin-bottom:12px}
+.note{color:#c9d6ee;font-size:17px;margin:4px}
+.alert{background:var(--red);color:#fff;border-radius:14px;padding:8px 12px;margin:0 0 12px;font-weight:600}
+.seeds{display:grid;grid-template-columns:auto 1fr;gap:8px 12px;align-items:center;margin:8px 0}
+.seeds select{padding:6px;font-size:20px;border:2px solid #c3cde3}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0 4px}
+.foot{margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.danger{border-color:var(--red)!important;color:#ffb4a8!important}
+#part{max-width:760px;margin:0 auto;padding:0 12px 10px}
+.seg{display:flex;border:2px solid var(--yellow);border-radius:999px;overflow:hidden}
+.seg button{flex:1;background:transparent;color:#fff;border:0;padding:6px 4px;font-weight:800;text-transform:uppercase;font-size:16px;cursor:pointer}
+.seg button.act{background:var(--yellow);color:var(--ink)}
+.pick{border:2px solid #c3cde3;background:#f1f4fa;color:var(--ink);border-radius:12px;padding:6px;min-height:46px;font-weight:800;white-space:nowrap;cursor:pointer;min-width:0}
+.pick.on{background:var(--yellow);border-color:var(--ink)}
+.sc.res{font-size:20px;min-width:64px}
+</style>
+</head>
+<body>
+<header>
+  <h1>__TITRE__</h1>
+  <button class="btn" id="orga"></button>
+</header>
+<div id="part"></div>
+<nav id="tabs"></nav>
+<main id="app"></main>
+
+<script>
+const SLOTS = ["13h00 – 13h10","13h15 – 13h25","13h30 – 13h40","13h45 – 13h55","14h00 – 14h10"];
+const START = [780, 795, 810, 825, 840]; // minutes depuis minuit
+const END_ALL = 855;
+const CHECK_TIME = 850; // 14h10 : vérifier les 30 scores et confirmer le Top 4
+const TCOL = ["#2563C9","#D93A26","#F0803C","#3E8E2E","#4B3FB5","#F5C230"];
+// Programme (identique au fichier Excel) : par terrain, les 5 créneaux [Équipe A, Équipe B]
+const PROG = [
+  [[2,9],[8,12],[7,11],[1,6],[4,10]],
+  [[5,7],[3,9],[1,5],[2,10],[6,12]],
+  [[4,12],[10,11],[2,6],[8,9],[3,7]],
+  [[8,11],[2,5],[3,10],[4,7],[1,9]],
+  [[6,10],[1,4],[9,12],[3,11],[5,8]],
+  [[1,3],[6,7],[4,8],[5,12],[2,11]]
+];
+const MATCHES = [];
+for (let s = 0; s < 5; s++) for (let t = 0; t < 6; t++)
+  MATCHES.push({ n: s * 6 + t + 1, id: "m" + (s * 6 + t + 1), slot: s, terrain: t + 1, a: PROG[t][s][0], b: PROG[t][s][1] });
+
+// Jeux du matin (fiche « Programme des matches ») : chaque équipe passe une fois par activité
+const JEUX_ON = "__JEUX__" === "1";
+const J_SLOTS = ["10h00 – 10h20","10h20 – 10h40","10h40 – 11h00","11h00 – 11h20","11h20 – 11h40","11h40 – 12h00"];
+const J_START = [600, 620, 640, 660, 680, 700];
+const J_END = 720;
+const ACTIVITES = ["Basketball","Uni-hockey","Dodgeball","Tennisfoot","Flag football","Volley-ball"];
+// Par créneau, les 6 terrains [Équipe A, Équipe B]
+const J_PROG = [
+  [[1,2],[3,4],[5,6],[7,8],[9,10],[11,12]],
+  [[3,8],[6,9],[2,4],[5,11],[1,12],[7,10]],
+  [[6,11],[5,10],[3,12],[4,9],[2,7],[1,8]],
+  [[4,5],[7,12],[9,11],[1,10],[6,8],[2,3]],
+  [[7,9],[1,11],[8,10],[2,12],[3,5],[4,6]],
+  [[10,12],[2,8],[1,7],[3,6],[4,11],[5,9]]
+];
+const JEUX = [];
+for (let s = 0; s < 6; s++) for (let t = 0; t < 6; t++)
+  JEUX.push({ n: s * 6 + t + 1, id: "j" + (s * 6 + t + 1), slot: s, terrain: t + 1, a: J_PROG[s][t][0], b: J_PROG[s][t][1] });
+
+// Partie affichée : les jeux le matin, le tournoi à partir de 12h30 (modifiable avec le sélecteur)
+let part = JEUX_ON && minutes() < 750 ? "jeux" : "tournoi";
+let S = { scores: {} }, tab = "classement", pin = "", orga = false, admin = false, filter = "", dirty = false;
+try { pin = localStorage.getItem("pin") || ""; filter = localStorage.getItem("filter") || ""; } catch {}
+const team = n => n ? "Équipe " + n : "—";
+const $ = s => document.querySelector(s);
+
+function standings() {
+  const r = {};
+  for (let n = 1; n <= 12; n++) r[n] = { n, j: 0, v: 0, nul: 0, d: 0, bp: 0, bc: 0, pts: 0 };
+  for (const m of MATCHES) {
+    const s = S.scores[m.id]; if (!s) continue;
+    const A = r[m.a], B = r[m.b];
+    A.j++; B.j++; A.bp += s.a; A.bc += s.b; B.bp += s.b; B.bc += s.a;
+    if (s.a > s.b) { A.v++; A.pts += 3; B.d++; }
+    else if (s.b > s.a) { B.v++; B.pts += 3; A.d++; }
+    else { A.nul++; B.nul++; A.pts++; B.pts++; }
+  }
+  const list = Object.values(r);
+  list.forEach(x => { x.diff = x.bp - x.bc; x.key = x.pts + "|" + x.diff + "|" + x.bp; });
+  list.sort((x, y) => y.pts - x.pts || y.diff - x.diff || y.bp - x.bp || x.n - y.n);
+  list.forEach(x => { x.tie = list.filter(y => y.key === x.key).length > 1; });
+  return list;
+}
+const validated = () => MATCHES.filter(m => S.scores[m.id]).length;
+// Jeux : 3 / 1 / 0, pas de départage (même rang à égalité de points)
+function jeuxStandings() {
+  const r = {}, J = S.jeux || {};
+  for (let n = 1; n <= 12; n++) r[n] = { n, j: 0, v: 0, nul: 0, d: 0, pts: 0 };
+  for (const m of JEUX) {
+    const x = J[m.id]; if (!x) continue;
+    const A = r[m.a], B = r[m.b];
+    A.j++; B.j++;
+    if (x === "a") { A.v++; A.pts += 3; B.d++; }
+    else if (x === "b") { B.v++; B.pts += 3; A.d++; }
+    else { A.nul++; B.nul++; A.pts++; B.pts++; }
+  }
+  const list = Object.values(r).sort((x, y) => y.pts - x.pts || x.n - y.n);
+  list.forEach((x, i) => { x.rang = i && x.pts === list[i - 1].pts ? list[i - 1].rang : i + 1; });
+  return list;
+}
+function winner(m) {
+  const s = S.scores[m.id]; if (!s || !m.a || !m.b) return null;
+  return s.a > s.b ? m.a : s.b > s.a ? m.b : s.w === "a" ? m.a : s.w === "b" ? m.b : null;
+}
+function finals() {
+  const confirmed = Array.isArray(S.semis);
+  const seed = confirmed ? S.semis : standings().slice(0, 4).map(x => x.n);
+  const sf1 = { id: "sf1", a: seed[0], b: seed[3] }, sf2 = { id: "sf2", a: seed[1], b: seed[2] };
+  const fin = { id: "fin", a: confirmed ? winner(sf1) : null, b: confirmed ? winner(sf2) : null };
+  return { seed, confirmed, sf1, sf2, fin, champion: confirmed ? winner(fin) : null };
+}
+function minutes() { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+function slotState(i, starts = START, endAll = END_ALL) {
+  const m = minutes(), end = starts[i + 1] ?? endAll;
+  return { now: m >= starts[i] && m < end, past: m >= end };
+}
+const esc = v => String(v);
+
+function scoreCell(id, s, editable) {
+  if (!editable) return `<span class="sc">${s ? s.a + " – " + s.b : "– : –"}</span>`;
+  return `<span class="sc"><input inputmode="numeric" maxlength="2" aria-label="Buts A" data-id="${id}" data-k="a" value="${s ? s.a : ""}"> <input inputmode="numeric" maxlength="2" aria-label="Buts B" data-id="${id}" data-k="b" value="${s ? s.b : ""}"></span>`;
+}
+function matchRow(m, opts) {
+  const s = S.scores[m.id], w = winner(m);
+  const editable = orga && opts.editable !== false && m.a && m.b;
+  let info = opts.info || "";
+  if (opts.todo && !s) info += (info ? " · " : "") + "<b>à encoder</b>";
+  if (editable && s && s.a === s.b && !m.id.startsWith("m"))
+    info += `${info ? " · " : ""}Égalité, vainqueur : <select data-id="${m.id}" data-k="w" aria-label="Vainqueur"><option value="">—</option><option value="a" ${s.w === "a" ? "selected" : ""}>${team(m.a)}</option><option value="b" ${s.w === "b" ? "selected" : ""}>${team(m.b)}</option></select>`;
+  else if (s && s.a === s.b && m.id.startsWith("m")) info += (info ? " · " : "") + "Nul";
+  const lbl = n => n ? `<span class="lbl">Équipe</span> ${n}` : "—";
+  return `<div class="m" data-m="${m.id}"><span class="bar" style="background:${opts.color}"></span><span class="a ${w && w === m.a ? "w" : ""}">${lbl(m.a)}</span>${scoreCell(m.id, s, editable)}<span class="b ${w && w === m.b ? "w" : ""}">${lbl(m.b)}</span><span class="info">${info}</span></div>`;
+}
+// Arbitre : touche l'équipe gagnante ou « Nul » ; les autres voient V – D / Nul
+function jeuRow(m, opts) {
+  const x = (S.jeux || {})[m.id];
+  const lbl = n => `<span class="lbl">Équipe</span> ${n}`;
+  let info = opts.info || "";
+  if (opts.todo && !x) info += (info ? " · " : "") + "<b>à encoder</b>";
+  const bar = `<span class="bar" style="background:${opts.color}"></span>`;
+  if (orga) {
+    const b = (r, t) => `<button class="pick ${x === r ? "on" : ""}" data-j="${m.id}" data-r="${r}">${t}</button>`;
+    return `<div class="m" data-m="${m.id}">${bar}${b("a", lbl(m.a))}${b("n", "Nul")}${b("b", lbl(m.b))}<span class="info">${info}</span></div>`;
+  }
+  const mid = !x ? "vs" : x === "n" ? "Nul" : x === "a" ? "V – D" : "D – V";
+  return `<div class="m" data-m="${m.id}">${bar}<span class="a ${x === "a" ? "w" : ""}">${lbl(m.a)}</span><span class="sc res">${mid}</span><span class="b ${x === "b" ? "w" : ""}">${lbl(m.b)}</span><span class="info">${info}</span></div>`;
+}
+
+function viewJeuxClassement() {
+  const v = JEUX.filter(m => (S.jeux || {})[m.id]).length;
+  let h = `<p class="meta">Jeux validés : <b>${v} / 36</b></p><div class="card"><table><tr><th>#</th><th style="text-align:left">Équipe</th><th>J</th><th>V</th><th>N</th><th>D</th><th>Pts</th></tr>`;
+  for (const x of jeuxStandings()) h += `<tr><td>${x.rang}</td><td class="t">Équipe ${x.n}</td><td>${x.j}</td><td>${x.v}</td><td>${x.nul}</td><td>${x.d}</td><td class="pts">${x.pts}</td></tr>`;
+  h += `</table></div><p class="note">Barème : victoire 3 pts, nul 1 pt, défaite 0. À égalité de points, les équipes partagent le même rang. Classement indépendant du tournoi de l'après-midi.</p>`;
+  return h;
+}
+
+function viewClassement() {
+  const st = standings(), f = finals(), v = validated();
+  const q = new Set(f.seed);
+  let h = `<p class="meta">Matchs validés : <b>${v} / 30</b>${f.confirmed ? " · Demi-finalistes <b>confirmés</b>" : ""}</p><div class="card"><table><tr><th>#</th><th style="text-align:left">Équipe</th><th>J</th><th>V</th><th>N</th><th>D</th><th>BP</th><th>BC</th><th>+/−</th><th>Pts</th></tr>`;
+  st.forEach((x, i) => {
+    h += `<tr class="${q.has(x.n) ? "q" : ""}"><td>${i + 1}${x.tie && x.j ? '<span class="tie">=</span>' : ""}</td><td class="t">Équipe ${x.n}</td><td>${x.j}</td><td>${x.v}</td><td>${x.nul}</td><td>${x.d}</td><td>${x.bp}</td><td>${x.bc}</td><td>${x.diff > 0 ? "+" : ""}${x.diff}</td><td class="pts">${x.pts}</td></tr>`;
+  });
+  h += `</table></div><p class="note"><span class="legend"></span>${f.confirmed ? "Demi-finalistes confirmés par l'organisateur." : "Top 4 provisoire : définitif quand l'organisateur confirme les demi-finalistes après vérification des 30 scores."}</p>`;
+  h += `<p class="note">Barème : victoire 3 pts, nul 1 pt, défaite 0. Départage : points, différence de buts, buts marqués. <span class="tie">=</span> égalité parfaite : ordre provisoire par numéro d'équipe, à arbitrer par l'organisateur.</p>`;
+  return h;
+}
+
+function viewMatchs() {
+  const J = part === "jeux";
+  const c = J
+    ? { list: JEUX, slots: J_SLOTS, starts: J_START, end: J_END, row: jeuRow, done: m => (S.jeux || {})[m.id], per: 6, mot: "Jeux",
+        aide: "Touche l'équipe gagnante, ou « Nul ». Touche à nouveau le résultat pour l'effacer." }
+    : { list: MATCHES, slots: SLOTS, starts: START, end: END_ALL, row: matchRow, done: m => S.scores[m.id], per: 5, mot: "Matchs",
+        aide: "Remplis les deux cases jaunes à la fin du match (0 et 0 pour un 0–0)." };
+  const tname = t => "Terrain " + t + (J ? " · " + ACTIVITES[t - 1] : "");
+  const tf = filter.startsWith("t") ? +filter.slice(1) : 0, ef = filter.startsWith("e") ? +filter.slice(1) : 0;
+  const tcount = t => c.list.filter(m => m.terrain === t && c.done(m)).length;
+  let h = `<div class="filter"><select id="filter" aria-label="Filtrer"><option value="">Tous les ${c.mot.toLowerCase()}</option><optgroup label="Arbitres : mon terrain">${[1,2,3,4,5,6].map(t => `<option value="t${t}" ${filter === "t" + t ? "selected" : ""}>${tname(t)} · ${tcount(t)}/${c.per} validés</option>`).join("")}</optgroup><optgroup label="Équipes">${Array.from({ length: 12 }, (_, i) => `<option value="e${i + 1}" ${filter === "e" + (i + 1) ? "selected" : ""}>${team(i + 1)}</option>`).join("")}</optgroup></select></div>`;
+  if (tf) h += `<div class="card tbox" style="border-left:0;background:${TCOL[tf - 1]};color:${tf === 6 ? "#12274A" : "#fff"}"><span>${tname(tf)}</span><span>${tcount(tf)} / ${c.per}</span></div>${orga ? `<p class="note">${c.aide}</p>` : ""}`;
+  else h += `<p class="meta">${c.mot} validés : <b>${c.list.filter(c.done).length} / ${c.list.length}</b></p>`;
+  for (let i = 0; i < c.slots.length; i++) {
+    const st = slotState(i, c.starts, c.end);
+    const list = c.list.filter(m => m.slot === i && (!tf || m.terrain === tf) && (!ef || m.a === ef || m.b === ef));
+    if (!list.length) continue;
+    h += `<div class="slot">${c.slots[i]} ${st.now ? '<span class="now">En cours</span>' : ""}</div><div class="card">`;
+    for (const m of list) h += c.row(m, { color: TCOL[m.terrain - 1], info: tf ? "" : tname(m.terrain), todo: st.past });
+    h += `</div>`;
+  }
+  return h;
+}
+
+function viewFinales() {
+  const f = finals(), v = validated();
+  let h = "";
+  if (f.champion) h += `<div class="champ">Vainqueur : ${team(f.champion)}</div>`;
+  if (!f.confirmed) {
+    if (minutes() >= CHECK_TIME && orga) h += `<div class="alert">14h10 passé : vérifie les 30 scores puis confirme les demi-finalistes.</div>`;
+    h += `<p class="note">Affiches provisoires d'après le classement actuel (${v} / 30 matchs validés).</p>`;
+    if (orga) {
+      const top = standings();
+      const sel = (i) => `<select data-seed="${i}" aria-label="Rang ${i + 1}">${top.map(x => `<option value="${x.n}" ${f.seed[i] === x.n ? "selected" : ""}>${team(x.n)} (${x.pts} pts)</option>`).join("")}</select>`;
+      h += `<div class="card"><b>Confirmer les demi-finalistes</b><p style="margin:4px 0;font-size:17px">Pré-rempli avec le Top 4 actuel. En cas d'égalité parfaite, change l'ordre ici.</p>${v < 30 ? `<p style="margin:4px 0;color:var(--red);font-weight:800">Attention : seulement ${v} / 30 matchs validés.</p>` : ""}<div class="seeds"><span>1er</span>${sel(0)}<span>2e</span>${sel(1)}<span>3e</span>${sel(2)}<span>4e</span>${sel(3)}</div><div class="row"><button class="btn solid" id="confirm-semis">Confirmer</button></div></div>`;
+    }
+  }
+  h += `<div class="fin">`;
+  h += `<h3>Demi-finale 1 · 1er vs 4e · 14h15</h3><div class="card">${matchRow(f.sf1, { color: "var(--yellow)", editable: f.confirmed })}</div>`;
+  h += `<h3>Demi-finale 2 · 2e vs 3e · 14h15</h3><div class="card">${matchRow(f.sf2, { color: "var(--yellow)", editable: f.confirmed })}</div>`;
+  h += `<h3>Finale · 14h30</h3><div class="card">${matchRow(f.fin, { color: "var(--yellow)", editable: f.confirmed })}</div>`;
+  h += `</div><p class="note">Débriefing à 14h45.</p>`;
+  if (orga && f.confirmed) h += `<div class="foot"><button class="btn danger" id="unconfirm">Modifier les demi-finalistes</button></div>`;
+  return h;
+}
+
+function exportCsv() {
+  const rows = [["N°", "Horaire", "Terrain", "Équipe A", "Équipe B", "Buts A", "Buts B", "État"]];
+  for (const m of [...MATCHES].sort((x, y) => x.n - y.n)) {
+    const s = S.scores[m.id];
+    rows.push([m.n, SLOTS[m.slot], m.terrain, m.a, m.b, s ? s.a : "", s ? s.b : "", s ? "Validé" : "À jouer"]);
+  }
+  rows.push([], ["Rang", "Équipe", "MJ", "V", "N", "D", "BP", "BC", "Diff.", "Pts"]);
+  standings().forEach((x, i) => rows.push([i + 1, x.n, x.j, x.v, x.nul, x.d, x.bp, x.bc, x.diff, x.pts]));
+  const f = finals();
+  rows.push([], ["Phase finale", f.confirmed ? "confirmée" : "provisoire"]);
+  for (const [l, m] of [["Demi-finale 1", f.sf1], ["Demi-finale 2", f.sf2], ["Finale", f.fin]]) {
+    const s = S.scores[m.id];
+    rows.push([l, m.a || "", m.b || "", s ? s.a : "", s ? s.b : "", winner(m) ? "Vainqueur : " + winner(m) : ""]);
+  }
+  if (JEUX_ON) {
+    const J = S.jeux || {};
+    rows.push([], ["Jeux du matin"], ["N°", "Horaire", "Terrain", "Activité", "Équipe A", "Équipe B", "Résultat"]);
+    for (const m of JEUX) {
+      const x = J[m.id];
+      rows.push([m.n, J_SLOTS[m.slot], m.terrain, ACTIVITES[m.terrain - 1], m.a, m.b, !x ? "À jouer" : x === "n" ? "Nul" : "Victoire équipe " + (x === "a" ? m.a : m.b)]);
+    }
+    rows.push([], ["Rang", "Équipe", "J", "V", "N", "D", "Pts"]);
+    jeuxStandings().forEach(x => rows.push([x.rang, x.n, x.j, x.v, x.nul, x.d, x.pts]));
+  }
+  const csv = "﻿" + rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(";")).join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  const d = new Date();
+  a.download = `classement-${d.getHours()}h${String(d.getMinutes()).padStart(2, "0")}.csv`;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+function render() {
+  dirty = false;
+  $("#orga").textContent = admin ? "Admin ✓" : orga ? "Orga ✓" : "Organisateur";
+  $("#orga").className = "btn" + (orga ? " on" : "");
+  $("#part").innerHTML = JEUX_ON ? `<div class="seg">${[["jeux", "Jeux · matin"], ["tournoi", "Tournoi · après-midi"]].map(([k, l]) => `<button class="${part === k ? "act" : ""}" data-part="${k}">${l}</button>`).join("")}</div>` : "";
+  if (part === "jeux" && tab === "finales") tab = "classement";
+  $("#tabs").innerHTML = [["classement", "Classement"], ["matchs", "Matchs"], ...(part === "jeux" ? [] : [["finales", "Finales"]])]
+    .map(([k, l]) => `<button class="${tab === k ? "act" : ""}" data-tab="${k}">${l}</button>`).join("");
+  let h = tab === "classement" ? (part === "jeux" ? viewJeuxClassement() : viewClassement()) : tab === "matchs" ? viewMatchs() : viewFinales();
+  const resetLbl = !JEUX_ON ? "Tout remettre à zéro" : part === "jeux" ? "Remettre les jeux à zéro" : "Remettre le tournoi à zéro";
+  h += `<div class="foot"><button class="btn" id="export">Sauvegarde (CSV)</button>${admin ? `<button class="btn danger" id="reset">${resetLbl}</button>` : ""}</div>`;
+  $("#app").innerHTML = h;
+}
+function rerender() {
+  const a = document.activeElement;
+  if (a && (a.tagName === "INPUT" || a.tagName === "SELECT") && (a.dataset.id || a.dataset.seed)) { dirty = true; return; }
+  render();
+}
+
+async function post(path, body) {
+  const r = await fetch(path, { method: "POST", headers: { "content-type": "application/json", "x-pin": pin }, body: JSON.stringify(body || {}) });
+  if (r.status === 429) { alert("Trop d'essais de code depuis ce réseau : réessaie dans 2 minutes."); return false; }
+  if (r.status === 401) { logout(); alert("Code refusé."); return false; }
+  if (r.status === 403) { alert("Réservé à l'administrateur."); return false; }
+  if (!r.ok) { alert("Refusé : vérifie la saisie."); return false; }
+  S = await r.json(); return true;
+}
+async function save(id, a, b, w) { if (await post("/api/score", { id, a, b, w })) rerender(); }
+function logout() { pin = ""; orga = false; admin = false; try { localStorage.removeItem("pin"); } catch {} render(); }
+// Renvoie le statut HTTP ; retient si le code est celui de l'administrateur
+async function checkPin(p) {
+  try {
+    const r = await fetch("/api/auth", { method: "POST", headers: { "x-pin": p } });
+    if (r.ok) admin = !!(await r.json()).admin;
+    return r.status;
+  } catch { return 0; }
+}
+
+document.addEventListener("click", async e => {
+  const t = e.target.closest("[data-tab]");
+  if (t) { tab = t.dataset.tab; render(); return; }
+  const pt = e.target.closest("[data-part]");
+  if (pt) { part = pt.dataset.part; render(); return; }
+  const pk = e.target.closest("[data-j]");
+  if (pk && orga) {
+    const id = pk.dataset.j, cur = (S.jeux || {})[id];
+    let r = pk.dataset.r;
+    if (cur === r) { if (!confirm("Effacer ce résultat ?")) return; r = null; }
+    if (await post("/api/jeu", { id, r })) rerender();
+    return;
+  }
+  const id = e.target.id;
+  if (id === "orga") {
+    if (orga) { if (confirm("Quitter le mode organisateur ?")) logout(); return; }
+    const p = prompt("Code organisateur :");
+    const c = p ? await checkPin(p) : 0;
+    if (c === 200) { pin = p; orga = true; try { localStorage.setItem("pin", p); } catch {} render(); }
+    else if (c === 429) alert("Trop d'essais de code depuis ce réseau : réessaie dans 2 minutes.");
+    else if (p) alert("Code refusé.");
+  } else if (id === "export") exportCsv();
+  else if (id === "reset") {
+    const quoi = !JEUX_ON ? "TOUS les scores et la phase finale" : part === "jeux" ? "TOUS les résultats des jeux du matin" : "TOUS les scores du tournoi et la phase finale";
+    if (!confirm(`Effacer ${quoi} ?`) || !confirm("Vraiment tout effacer ?")) return;
+    if (await post("/api/reset", JEUX_ON ? { part } : {})) render();
+  } else if (id === "confirm-semis") {
+    const seeds = [0, 1, 2, 3].map(i => +document.querySelector(`[data-seed="${i}"]`).value);
+    if (new Set(seeds).size !== 4) { alert("Choisis 4 équipes différentes."); return; }
+    if (validated() < 30 && !confirm(`Seulement ${validated()} / 30 matchs validés. Confirmer quand même ?`)) return;
+    if (await post("/api/semis", { seeds })) render();
+  } else if (id === "unconfirm") {
+    if (!confirm("Annuler la confirmation ? Les scores des demi-finales et de la finale seront effacés.")) return;
+    if (await post("/api/semis", { seeds: null })) render();
+  }
+});
+document.addEventListener("change", e => {
+  if (e.target.id === "filter") { filter = e.target.value; try { localStorage.setItem("filter", filter); } catch {} render(); return; }
+  if (e.target.dataset.seed) return;
+  const el = e.target.closest("[data-id]"); if (!el || !orga) return;
+  const row = el.closest("[data-m]");
+  const ia = row.querySelector('input[data-k="a"]'), ib = row.querySelector('input[data-k="b"]');
+  const sel = row.querySelector('select[data-k="w"]');
+  const va = ia.value.trim(), vb = ib.value.trim();
+  if (va === "" && vb === "") return save(el.dataset.id, null, null);
+  if (va === "" || vb === "") return;
+  if (!/^\d{1,2}$/.test(va) || !/^\d{1,2}$/.test(vb)) { alert("Score entre 0 et 99."); return; }
+  save(el.dataset.id, +va, +vb, sel && sel.value ? sel.value : undefined);
+});
+document.addEventListener("focusout", () => setTimeout(() => { if (dirty) rerender(); }, 0));
+
+(async () => {
+  try { S = await (await fetch("/api/state")).json(); } catch {}
+  if (pin) { const c = await checkPin(pin); orga = c === 200; if (c === 401) { pin = ""; try { localStorage.removeItem("pin"); } catch {} } }
+  render();
+  const es = new EventSource("/api/events");
+  es.onmessage = ev => { S = JSON.parse(ev.data); rerender(); };
+  setInterval(rerender, 60000);
+})();
+</script>
+</body>
+</html>

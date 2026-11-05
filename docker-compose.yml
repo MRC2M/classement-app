@@ -1,0 +1,31 @@
+# Deux classements indépendants (scores, code organisateur et titre séparés), même code :
+#   FitFive -> http://167.233.116.27:8090   (code dans .env)
+#   VUB     -> http://167.233.116.27:8091   (code dans .env.vub)
+# Le port 80 sert déjà Code F2M (par l'IP) et le 8080 Dialogues NL.
+services:
+  classement:
+    build: .
+    restart: unless-stopped
+    env_file: .env          # ORGA_PIN=...
+    environment:
+      TITRE: Classement FitFive
+      JEUX: "1"             # jeux du matin en plus du tournoi
+    ports:
+      - "8090:3000"
+    volumes:
+      - classement_data:/data
+
+  vub:
+    build: .
+    restart: unless-stopped
+    env_file: .env.vub      # ORGA_PIN=...
+    environment:
+      TITRE: Classement VUB
+    ports:
+      - "8091:3000"
+    volumes:
+      - vub_data:/data
+
+volumes:
+  classement_data:
+  vub_data:
